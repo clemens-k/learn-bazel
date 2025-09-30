@@ -1,0 +1,90 @@
+{
+    "name": "Bazel Learning Environment",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true
+        },
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.11",
+            "installTools": true
+        },
+        "ghcr.io/devcontainers/features/rust:1": {
+            "version": "1.75.0",
+            "profile": "default"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "BazelBuild.vscode-bazel",
+                "ms-vscode.cpptools-extension-pack",
+                "rust-lang.rust-analyzer",
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.pylint",
+                "redhat.vscode-yaml",
+                "DavidAnson.vscode-markdownlint",
+                "timonwong.shellcheck",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-vscode.hexeditor",
+                "eamodio.gitlens",
+                "streetsidesoftware.code-spell-checker",
+                "xaver.clang-format"
+            ],
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "explicit",
+                    "source.fixAll": "explicit"
+                },
+                "files.associations": {
+                    "BUILD": "starlark",
+                    "BUILD.bazel": "starlark",
+                    "WORKSPACE": "starlark",
+                    "WORKSPACE.bazel": "starlark",
+                    "*.bzl": "starlark",
+                    "*.j2": "jinja"
+                },
+                "bazel.buildifierExecutable": "/usr/local/bin/buildifier",
+                "bazel.queriesShareServer": true,
+                "rust-analyzer.check.command": "clippy",
+                "rust-analyzer.rustfmt.extraArgs": [
+                    "--config",
+                    "max_width=100"
+                ],
+                "python.defaultInterpreterPath": "/usr/local/bin/python3",
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": true,
+                "C_Cpp.clang_format_style": "Google",
+                "C_Cpp.clang_format_fallbackStyle": "Google",
+                "yaml.validate": true,
+                "yaml.schemas": {
+                    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "docker-compose*.yml"
+                },
+                "markdownlint.config": {
+                    "MD013": false,
+                    "MD033": false
+                },
+                "shellcheck.enable": true,
+                "shellcheck.run": "onSave"
+            }
+        }
+    },
+    "postCreateCommand": "mkdir -p ${containerWorkspaceFolder}/.bazel-cache && .devcontainer/setup.sh",
+    "remoteUser": "vscode",
+    "mounts": [
+        "source=${localWorkspaceFolder}/.bazel-cache,target=/home/vscode/.cache/bazel,type=bind,consistency=cached"
+    ],
+    "forwardPorts": [
+        8080,
+        3000
+    ],
+    "workspaceFolder": "/workspaces/learn-bazel"
+}

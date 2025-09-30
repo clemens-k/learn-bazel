@@ -1,0 +1,2 @@
+# This file marks the root of a Bazel workspace
+workspace(name = "hello_cpp_example")

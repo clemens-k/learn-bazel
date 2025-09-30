@@ -1,0 +1,43 @@
+{
+    "recommendations": [
+        // Bazel support
+        "BazelBuild.vscode-bazel",
+        
+        // C/C++ development
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        
+        // Rust development
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        
+        // Python development
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
+        
+        // Configuration files
+        "redhat.vscode-yaml",
+        "ms-vscode.json",
+        
+        // Git integration
+        "eamodio.gitlens",
+        
+        // General development
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.hexeditor",
+        "ms-vscode.vscode-json",
+        
+        // Documentation
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint"
+    ],
+    "unwantedRecommendations": [
+        // Avoid conflicting extensions
+        "ms-vscode.vscode-typescript",
+        "bradlc.vscode-tailwindcss"
+    ]
+}

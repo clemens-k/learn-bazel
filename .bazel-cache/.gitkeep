@@ -1,0 +1,2 @@
+# This file ensures the .bazel-cache directory is tracked by git
+# The directory itself is used as a mount point for the devcontainer

@@ -1,0 +1,48 @@
+###############################################################################
+# WORKSPACE - Legacy Bazel Workspace Definition (Transitional)
+###############################################################################
+# This file marks the root of a Bazel workspace and defines the workspace name.
+#
+# IMPORTANT: This example is in transition from WORKSPACE to MODULE.bazel.
+# The external dependencies below should eventually be migrated to MODULE.bazel
+# for modern Bzlmod-based dependency management.
+#
+# What's happening here:
+# - WORKSPACE currently manages Rust rules and toolchains (legacy approach)
+# - MODULE.bazel also declares the same dependencies (modern approach)
+# - In a complete migration, this WORKSPACE would only contain workspace()
+#
+# Migration benefits:
+# - Automatic dependency version resolution
+# - Better isolation and reproducibility
+# - Integration with Bazel Central Registry
+# - Future-proof dependency management
+###############################################################################
+
+# Define the workspace name
+workspace(name = "hello_rust_example")
+
+# ============================================================================
+# LEGACY EXTERNAL DEPENDENCIES (TO BE MIGRATED TO MODULE.bazel)
+# ============================================================================
+# These dependencies are declared here for compatibility but should be
+# moved to MODULE.bazel in a complete migration to Bzlmod.
+
+# Load Rust rules
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# Rules for Rust
+http_archive(
+    name = "rules_rust",
+    integrity = "sha256-T5kWGIHS38tSNIc7f5fIiwMCOZ3SwPUGCKAjQOLGgdw=",
+    urls = ["https://github.com/bazelbuild/rules_rust/releases/download/0.46.0/rules_rust-v0.46.0.tar.gz"],
+)
+
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
+
+rules_rust_dependencies()
+
+rust_register_toolchains(
+    edition = "2021",
+    versions = ["1.75.0"],
+)

@@ -1,0 +1,39 @@
+"""Learn Bazel - Educational workspace for understanding Bazel and Bzlmod."""
+
+###############################################################################
+# MODULE.bazel - Root Workspace Module Definition
+###############################################################################
+# This is the root MODULE.bazel file for the learn-bazel educational workspace.
+#
+# Note: This workspace contains multiple independent examples, each with their
+# own WORKSPACE and MODULE.bazel files. This root MODULE.bazel demonstrates
+# how a unified workspace would manage dependencies at the top level.
+#
+# In a real project, you would typically have either:
+# 1. A single MODULE.bazel at the root managing all dependencies
+# 2. Separate subprojects with their own MODULE.bazel files (like this repo)
+#
+# For more details, see: https://github.com/bazelbuild/bazel/issues/18958
+###############################################################################
+
+# Define the root module
+module(
+    name = "learn_bazel",
+    version = "0.1.0",
+)
+
+# Common dependencies that could be shared across examples
+# (These are commented out since each example manages its own dependencies)
+
+# C/C++ rules (shared by hello-c and hello-cpp examples)
+# bazel_dep(name = "rules_cc", version = "0.0.9")
+
+# Python rules (used by codegen example)
+# bazel_dep(name = "rules_python", version = "0.25.0")
+
+# Rust rules (used by hello-rust and codegen examples)
+bazel_dep(name = "rules_rust", version = "0.65.0")
+use_extension("@rules_rust//rust:extensions.bzl", "rust_toolchain")
+
+# Note: Each example subdirectory has its own WORKSPACE/MODULE.bazel pair
+# to demonstrate different approaches and maintain independence.

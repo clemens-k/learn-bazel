@@ -1,0 +1,41 @@
+"""Code generation example using Bazel with Python and Rust, managed via Bzlmod."""
+
+###############################################################################
+# MODULE.bazel - Modern Bazel External Dependency Management (Bzlmod)
+###############################################################################
+# This file is used for managing external dependencies using Bazel's modern
+# module system (Bzlmod). All external dependencies should be declared here
+# instead of in the WORKSPACE file.
+#
+# Key benefits of using MODULE.bazel:
+# - Automatic dependency version resolution
+# - Better isolation and reproducibility
+# - Integration with Bazel Central Registry
+# - Future-proof dependency management
+#
+# For more details, see: https://github.com/bazelbuild/bazel/issues/18958
+###############################################################################
+
+# Define this module
+module(
+    name = "codegen_example",
+    version = "0.1.0",
+)
+
+# Modern way to add Python rules using Bzlmod
+bazel_dep(name = "rules_python", version = "0.25.0")
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.11")
+
+# Modern way to add Rust rules using Bzlmod
+bazel_dep(name = "rules_rust", version = "0.65.0")
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(
+    edition = "2021",
+    versions = ["1.75.0"],
+)
+use_repo(rust, "rust_toolchains")
+
+# Note: The WORKSPACE file still contains the legacy dependency declarations
+# for compatibility. In a full migration, those would be removed and only
+# this MODULE.bazel file would manage external dependencies.

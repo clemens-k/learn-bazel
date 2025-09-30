@@ -1,0 +1,36 @@
+/* Generated header file for {{ project.name }} */
+/* Version: {{ project.version }} */
+/* Author: {{ project.author }} */
+/* Generated at: {{ generation.timestamp }} */
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include <stdbool.h>
+
+/* Project Information */
+#define PROJECT_NAME "{{ project.name }}"
+#define PROJECT_VERSION "{{ project.version }}"
+#define PROJECT_AUTHOR "{{ project.author }}"
+
+/* Constants */
+#define MAX_BUFFER_SIZE {{ constants.MAX_BUFFER_SIZE }}
+#define DEFAULT_TIMEOUT {{ constants.DEFAULT_TIMEOUT }}
+#define PI {{ constants.PI }}
+#define DEBUG {{ constants.DEBUG | lower }}
+
+/* Messages */
+{% for msg in messages %}
+#define MSG_{{ msg.id }} "{{ msg.text }}"
+{% endfor %}
+
+/* Feature Flags */
+#define FEATURE_LOGGING {{ features.logging | lower }}
+#define FEATURE_METRICS {{ features.metrics | lower }}
+#define FEATURE_AUTHENTICATION {{ features.authentication | lower }}
+
+/* Function declarations */
+void print_config(void);
+void print_messages(void);
+
+#endif /* CONFIG_H */

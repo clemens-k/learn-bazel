@@ -1,0 +1,23 @@
+###############################################################################
+# WORKSPACE - Legacy Bazel Workspace Definition
+###############################################################################
+# This file marks the root of a Bazel workspace and defines the workspace name.
+#
+# IMPORTANT: In modern Bazel projects using Bzlmod (MODULE.bazel), this file
+# should be kept minimal and NOT used for external dependency management.
+#
+# What WORKSPACE should contain:
+# - workspace() declaration with project name
+# - Local repository definitions (if any)
+# - Legacy compatibility code (if migrating)
+#
+# What WORKSPACE should NOT contain:
+# - External dependency declarations (use MODULE.bazel instead)
+# - load() statements for external rules (use MODULE.bazel instead)
+# - http_archive() or git_repository() rules (use MODULE.bazel instead)
+#
+# This separation ensures clean dependency management and future compatibility.
+###############################################################################
+
+# Define the workspace name
+workspace(name = "hello_c_example")

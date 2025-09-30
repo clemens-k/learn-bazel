@@ -1,0 +1,24 @@
+# Configuration for code generation
+project:
+  name: "MyAwesomeProject"
+  version: "1.0.0"
+  author: "Bazel Developer"
+
+constants:
+  MAX_BUFFER_SIZE: 1024
+  DEFAULT_TIMEOUT: 30
+  PI: 3.14159
+  DEBUG: true
+
+messages:
+  - id: "WELCOME"
+    text: "Welcome to the application!"
+  - id: "ERROR"
+    text: "An error occurred"
+  - id: "SUCCESS"
+    text: "Operation completed successfully"
+
+features:
+  logging: true
+  metrics: false
+  authentication: true

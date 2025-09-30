@@ -1,0 +1,27 @@
+###############################################################################
+# MODULE.bazel - Modern Bazel External Dependency Management (Bzlmod)
+###############################################################################
+# This file is used for managing external dependencies using Bazel's modern
+# module system (Bzlmod). All external dependencies should be declared here
+# instead of in the WORKSPACE file.
+#
+# Key benefits of using MODULE.bazel:
+# - Automatic dependency version resolution
+# - Better isolation and reproducibility
+# - Integration with Bazel Central Registry
+# - Future-proof dependency management
+#
+# For more details, see: https://github.com/bazelbuild/bazel/issues/18958
+###############################################################################
+
+# Define this module (optional for examples, but good practice)
+# module(
+#     name = "hello_cpp_example",
+#     version = "0.1.0",
+# )
+
+# Example: Add external dependencies here using bazel_dep()
+# bazel_dep(name = "rules_cc", version = "0.0.9")
+
+# Note: This hello-cpp example currently has no external dependencies,
+# but if it did, they would be declared here instead of in WORKSPACE.

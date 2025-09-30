@@ -1,0 +1,56 @@
+# Bazel build outputs
+bazel-*
+.bazel-cache/*
+!.bazel-cache/.gitkeep
+*.bazel.lock
+
+# IDE files
+.vscode/settings.json.local
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Rust
+target/
+Cargo.lock
+
+# C/C++
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.exe
+
+# Generated files
+compile_commands.json
+.clang_complete
+.ycm_extra_conf.py

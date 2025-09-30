@@ -1,0 +1,79 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug C Application",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/examples/basic/hello-c/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C: Build Hello C",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug C++ Application",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/examples/basic/hello-cpp/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C++: Build Hello C++",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug Rust Application",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/examples/basic/hello-rust/main",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Rust: Build Hello Rust"
+        },
+        {
+            "name": "Debug CodeGen C App",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/examples/codegen/c_app",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "CodeGen: Build C App",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Debug CodeGen Rust App",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/bazel-bin/examples/codegen/rust_app",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "CodeGen: Build Rust App"
+        }
+    ]
+}

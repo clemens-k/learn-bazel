@@ -1,0 +1,44 @@
+// Generated constants for {{ project.name }}
+// Version: {{ project.version }}
+// Author: {{ project.author }}
+// Generated at: {{ generation.timestamp }}
+
+#![allow(dead_code)]
+
+/// Project Information
+pub mod project {
+    pub const NAME: &str = "{{ project.name }}";
+    pub const VERSION: &str = "{{ project.version }}";
+    pub const AUTHOR: &str = "{{ project.author }}";
+}
+
+/// Application Constants
+pub mod constants {
+    pub const MAX_BUFFER_SIZE: usize = {{ constants.MAX_BUFFER_SIZE }};
+    pub const DEFAULT_TIMEOUT: u32 = {{ constants.DEFAULT_TIMEOUT }};
+    pub const PI: f64 = {{ constants.PI }};
+    pub const DEBUG: bool = {{ constants.DEBUG | lower }};
+}
+
+/// Messages
+pub mod messages {
+{% for msg in messages %}
+    pub const {{ msg.id }}: &str = "{{ msg.text }}";
+{% endfor %}
+}
+
+/// Feature Flags
+pub mod features {
+    pub const LOGGING: bool = {{ features.logging | lower }};
+    pub const METRICS: bool = {{ features.metrics | lower }};
+    pub const AUTHENTICATION: bool = {{ features.authentication | lower }};
+}
+
+/// Print configuration information
+pub fn print_config() {
+    println!("Project: {} v{}", project::NAME, project::VERSION);
+    println!("Author: {}", project::AUTHOR);
+    println!("Debug mode: {}", constants::DEBUG);
+    println!("Features: logging={}, metrics={}, auth={}", 
+             features::LOGGING, features::METRICS, features::AUTHENTICATION);
+}
