@@ -21,41 +21,54 @@ basic/
 2. **Navigate to example**: `cd examples/basic/hello-world`
 3. **Build**: `bazel build //...`
 4. **Run**: `bazel run :main`
+5. **Stop Bazel Server**: `bazel shutdown`
 
 ## 📚 Learning Progression
 
 ### 1. Hello C
+
 Start here to understand the basics:
+
 - WORKSPACE setup
 - Simple BUILD file
 - Basic cc_binary rule
 
 ### 2. Hello C++
+
 Learn C++ specifics:
+
 - Headers and source files
 - cc_library and cc_binary
 - C++ compilation flags
 
 ### 3. Hello Rust
+
 Rust integration:
+
 - Rust rules setup
 - rust_binary and rust_library
 - Cargo integration patterns
 
 ### 4. Multi-Target
+
 Learn about multiple targets:
+
 - Multiple rules in one BUILD file
 - Local dependencies
 - File organization
 
 ### 5. Dependencies
+
 Understand dependency management:
+
 - Inter-package dependencies
 - Target visibility
 - Dependency graphs
 
 ### 6. External Dependencies
+
 Work with external libraries:
+
 - System libraries
 - Third-party packages
 - Dependency resolution
@@ -87,6 +100,9 @@ bazel query --output=graph //... | dot -Tpng > graph.png
 
 # Show C++ compilation commands
 bazel build //hello-cpp:main --subcommands
+
+# Stop bazel server
+bazel shutdown
 ```
 
 ## 💡 Tips for Beginners
@@ -100,6 +116,7 @@ bazel build //hello-cpp:main --subcommands
 ## 🔗 Next Steps
 
 After completing these examples:
+
 1. Explore [Rust-Specific Examples](../rust/)
 2. Learn about [Code Generation](../codegen/)
 3. Try [Advanced Patterns](../advanced/)
