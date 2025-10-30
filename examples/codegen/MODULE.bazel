@@ -23,19 +23,32 @@ module(
 )
 
 # Modern way to add Python rules using Bzlmod
-bazel_dep(name = "rules_python", version = "0.25.0")
+bazel_dep(name = "rules_python", version = "1.6.3")
+
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-python.toolchain(python_version = "3.11")
+python.toolchain(
+    python_version = "3.13",
+)
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pypi",
+    python_version = "3.13",
+    requirements_lock = "//:requirements_lock.txt",
+)
+
+use_repo(pip, "pypi")
+
+# Modern way to add C++ rules using Bzlmod
+bazel_dep(name = "rules_cc", version = "0.2.12")
 
 # Modern way to add Rust rules using Bzlmod
-bazel_dep(name = "rules_rust", version = "0.65.0")
+bazel_dep(name = "rules_rust", version = "0.67.0")
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(
     edition = "2021",
-    versions = ["1.75.0"],
+    versions = ["1.67.0"],
 )
 use_repo(rust, "rust_toolchains")
 
-# Note: The WORKSPACE file still contains the legacy dependency declarations
-# for compatibility. In a full migration, those would be removed and only
-# this MODULE.bazel file would manage external dependencies.
+

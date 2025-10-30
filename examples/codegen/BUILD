@@ -1,4 +1,6 @@
-load("@rules_rust//rust:defs.bzl", "rust_binary")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library")
 
 # Python code generator
 py_binary(
@@ -6,9 +8,9 @@ py_binary(
     srcs = ["generate.py"],
     data = [
         "config.yaml",
-        "//templates:all_templates",
     ],
-    deps = [],  # Add Jinja2 dependency in real project
+    main = "generate.py",
+    deps = [],
 )
 
 # Generate C header
@@ -16,10 +18,10 @@ genrule(
     name = "generate_c_header",
     srcs = [
         "config.yaml",
-        "//templates:header.h.j2",
+        "//templates:all_templates",
     ],
     outs = ["generated/config.h"],
-    cmd = "$(location :generator) c $(location config.yaml) $(location //templates:header.h.j2) $@",
+    cmd = "$(location :generator) c $(location config.yaml) templates/header.h.j2 $@",
     tools = [":generator"],
 )
 
@@ -28,10 +30,10 @@ genrule(
     name = "generate_rust_constants",
     srcs = [
         "config.yaml",
-        "//templates:constants.rs.j2",
+        "//templates:all_templates",
     ],
     outs = ["generated/constants.rs"],
-    cmd = "$(location :generator) rust $(location config.yaml) $(location //templates:constants.rs.j2) $@",
+    cmd = "$(location :generator) rust $(location config.yaml) templates/constants.rs.j2 $@",
     tools = [":generator"],
 )
 
@@ -50,7 +52,15 @@ rust_binary(
     name = "rust_app",
     srcs = [
         "src/main.rs",
-        ":generate_rust_constants",
     ],
+    edition = "2021",
+    deps = [":rust_constants_lib"],
+)
+
+# Create a Rust library with the generated constants
+rust_library(
+    name = "rust_constants_lib",
+    srcs = [":generate_rust_constants"],
+    crate_name = "rust_constants_lib",
     edition = "2021",
 )
