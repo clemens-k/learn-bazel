@@ -74,6 +74,12 @@ This file tracks the progress of building a comprehensive Bazel learning reposit
   - Document performance profiling and optimization
   - Troubleshooting remote execution and caching issues
 
+### Maintenance
+
+- [ ] **Pruning**
+  - which caches are growing and should be regulary pruned
+  - which folder are "safe" to delete and which files can or should you transfer to new machines
+
 ## 📋 Task Priorities
 
 ### High Priority
