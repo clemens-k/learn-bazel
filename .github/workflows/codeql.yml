@@ -90,6 +90,11 @@ jobs:
         sudo ./bazel-installer.sh
         rm bazel-installer.sh
 
+    - name: Install python3-yaml for codegen
+      shell: bash
+      run: |
+        sudo apt install -y python3-yaml
+
     # If the analyze step fails for one of the languages you are analyzing with
     # "We were unable to automatically build your code", modify the matrix above
     # to set the build mode to "manual" for that language. Then modify this step
@@ -105,10 +110,6 @@ jobs:
           popd
 
           pushd examples/basic/hello-cpp
-          bazel build //...
-          popd
-
-          pushd examples/basic/hello-rust
           bazel build //...
           popd
 
