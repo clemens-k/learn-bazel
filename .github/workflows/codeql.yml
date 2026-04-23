@@ -114,7 +114,7 @@ jobs:
           popd
 
           pushd examples/codegen
-          bazel build //...
+          bazel build //:c_app
           popd
 
     - name: Perform CodeQL Analysis
