@@ -1,5 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_library")
 
 # Python code generator
@@ -10,7 +11,7 @@ py_binary(
         "config.yaml",
     ],
     main = "generate.py",
-    deps = [],
+    deps = ["@pypi//pyyaml"],
 )
 
 # Generate C header
@@ -63,4 +64,10 @@ rust_library(
     srcs = [":generate_rust_constants"],
     crate_name = "rust_constants_lib",
     edition = "2021",
+)
+
+compile_pip_requirements(
+    name = "requirements",
+    requirements_in = "requirements.txt",
+    requirements_txt = "requirements_lock.txt",
 )
