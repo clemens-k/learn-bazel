@@ -100,7 +100,7 @@ jobs:
       if: matrix.build-mode == 'manual'
       shell: bash
       run: |
-          pushd examples/basic/hello
+          pushd examples/basic/hello-c
           bazel build //...
           popd
 
