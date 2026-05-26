@@ -65,6 +65,15 @@ If you're completely new to Bazel:
 3. Dive into [Core Concepts](./docs/03-core-concepts.md) for the fundamentals
 4. Try the [Basic Examples](./examples/basic/) to get hands-on experience
 
+
+## 🦀 Cargo Workspace for Rust Tooling
+
+Bazel remains the **canonical build system** in this repository.
+
+A minimal root Cargo workspace is also included so standard Rust tooling works smoothly across examples (for example `cargo metadata`, `cargo fmt`, `cargo clippy`, and rust-analyzer).
+
+The Cargo manifests are intentionally lightweight and exist for tooling/editor compatibility.
+
 ## 📋 Prerequisites
 
 - Basic understanding of build systems and compilation
