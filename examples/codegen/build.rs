@@ -3,10 +3,6 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
-    println!("cargo:rerun-if-changed=config.yaml");
-    println!("cargo:rerun-if-changed=generate.py");
-    println!("cargo:rerun-if-changed=templates/constants.rs.j2");
-
     let manifest_dir =
         PathBuf::from(env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR must be set"));
     let out_dir = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR must be set"));
@@ -14,6 +10,9 @@ fn main() {
     let generator_script = manifest_dir.join("generate.py");
     let config_file = manifest_dir.join("config.yaml");
     let template_file = manifest_dir.join("templates/constants.rs.j2");
+    println!("cargo:rerun-if-changed={}", config_file.display());
+    println!("cargo:rerun-if-changed={}", generator_script.display());
+    println!("cargo:rerun-if-changed={}", template_file.display());
 
     let status = Command::new("python3")
         .arg(
@@ -38,6 +37,6 @@ fn main() {
 
     assert!(
         status.success(),
-        "generate.py failed (status: {status}). Ensure `python3` and `pyyaml` are installed."
+        "generate.py failed (status: {status}). Ensure `python3` and the `PyYAML` package are installed."
     );
 }
