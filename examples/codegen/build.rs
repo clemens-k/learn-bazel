@@ -18,7 +18,7 @@ fn main() {
             "templates/constants.rs.j2",
             output_file
                 .to_str()
-                .expect("generated constants output path must be valid UTF-8"),
+                .expect("output_file path must be valid UTF-8"),
         ])
         .status()
         .expect("failed to execute python3 generate.py");
