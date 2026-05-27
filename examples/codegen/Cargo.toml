@@ -2,10 +2,11 @@
 name = "codegen-rust"
 version = "0.1.0"
 edition = "2021"
+build = "build.rs"
 
 [lib]
 name = "rust_constants_lib"
-path = "generated/constants.rs"
+path = "src/lib.rs"
 
 [[bin]]
 name = "rust_app"
