@@ -1,6 +1,5 @@
 [workspace]
 members = [
   "examples/basic/hello-rust",
-  "examples/codegen",
 ]
 resolver = "3"

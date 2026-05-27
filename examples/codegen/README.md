@@ -25,13 +25,6 @@ codegen/
 3. **Generator**: Python script processes templates with configuration data
 4. **Integration**: Bazel rules orchestrate the generation and compilation
 
-
-## 🦀 Cargo Tooling Compatibility
-
-Bazel is the source of truth for generation/build behavior in this example.
-
-A minimal `Cargo.toml` is included for Rust tooling support. During Cargo builds, `build.rs` invokes `generate.py` to produce `constants.rs` into Cargo's `OUT_DIR`, so tools like `cargo clippy`, `cargo fmt`, `cargo metadata`, and rust-analyzer can operate without committing generated Rust sources.
-
 ## 🔧 Build and Run
 
 ```bash
