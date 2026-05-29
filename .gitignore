@@ -54,3 +54,6 @@ Cargo.lock
 compile_commands.json
 .clang_complete
 .ycm_extra_conf.py
+
+# codeql related temps
+_codeql/
