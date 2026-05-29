@@ -1,0 +1,9 @@
+"""Bazel named-configuration example with CodeQL analysis."""
+
+module(
+    name = "configs_example",
+    version = "0.1.0",
+)
+
+# C++ rules (required in Bazel 9+ — cc_binary/cc_library no longer global)
+bazel_dep(name = "rules_cc", version = "0.2.12")

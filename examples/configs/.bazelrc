@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .bazelrc — named build configurations for examples/configs
+#
+# A "config" is a named group of Bazel flags activated with --config=<name>.
+# Configs let you switch between build modes (debug / release / sanitizers)
+# without repeating long flag strings on the command line.
+#
+# Usage — Bazel directly:
+#   bazel build //...                   # default flags only
+#   bazel build --config=debug   //...  # + unoptimized, debug symbols
+#   bazel build --config=release //...  # + optimized, assertions off
+#   bazel build --config=asan    //...  # + AddressSanitizer
+#
+# Usage — with run_codeql.py:
+#   # default build (no config)
+#   python3 tools/run_codeql.py \
+#       --build-cwd examples/configs --source-root examples/configs //...
+#
+#   # pass a named config via --bazel-flags
+#   python3 tools/run_codeql.py \
+#       --build-cwd examples/configs --source-root examples/configs \
+#       --bazel-flags '--config=debug' //...
+#
+# Precedence note:
+#   /etc/bazel.bazelrc  <  ~/.bazelrc  <  THIS FILE  <  command-line flags
+#   Flags set on the command line always win over any .bazelrc entry.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Flags applied to every build regardless of --config
+build --copt=-Wall
+build --copt=-Wextra
+build --copt=-Wpedantic
+
+# ── debug ─────────────────────────────────────────────────────────────────────
+# Unoptimized build with full debug symbols and runtime assertions.
+# Best for development and for CodeQL analysis (preserves source structure).
+build:debug --copt=-O0
+build:debug --copt=-g
+build:debug --copt=-DDEBUG
+
+# ── release ───────────────────────────────────────────────────────────────────
+# Optimized build with assertions disabled and debug symbols stripped.
+# Use for production binaries; CodeQL can still analyse this mode.
+build:release --copt=-O2
+build:release --copt=-DNDEBUG
+build:release --strip=always
+
+# ── asan ──────────────────────────────────────────────────────────────────────
+# AddressSanitizer: instruments the binary to detect memory errors at runtime
+# (use-after-free, heap/stack buffer overflow, double-free, etc.).
+# Run the resulting binary to surface memory bugs; do NOT ship to production.
+build:asan --copt=-fsanitize=address
+build:asan --copt=-fno-omit-frame-pointer
+build:asan --copt=-O1
+build:asan --linkopt=-fsanitize=address

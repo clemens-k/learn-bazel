@@ -20,8 +20,5 @@
 #     version = "0.1.0",
 # )
 
-# Example: Add external dependencies here using bazel_dep()
-# bazel_dep(name = "rules_cc", version = "0.0.9")
-
-# Note: This hello-c example currently has no external dependencies,
-# but if it did, they would be declared here instead of in WORKSPACE.
+# C++ rules (required in Bazel 9+ — cc_binary/cc_library no longer global)
+bazel_dep(name = "rules_cc", version = "0.2.12")

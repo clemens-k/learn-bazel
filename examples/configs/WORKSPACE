@@ -1,0 +1,8 @@
+###############################################################################
+# WORKSPACE - Legacy Bazel Workspace Definition
+###############################################################################
+# In modern Bazel projects using Bzlmod (MODULE.bazel) this file should be
+# kept minimal. External dependencies are declared in MODULE.bazel instead.
+###############################################################################
+
+workspace(name = "configs_example")
